@@ -1,0 +1,4 @@
+numpy
+openai
+langchain
+git+https://github.com/openai/whisper.git

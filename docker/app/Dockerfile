@@ -11,12 +11,15 @@ ENV TZ JST-9
 ENV TERM xterm
 
 COPY requirements.txt /root/
+#COPY entrypoint.sh /var/tmp
+#CMD bash -E /var/tmp/entrypoint.sh && /bin/bash
 
 RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
 RUN pip install -r /root/requirements.txt
+RUN python -m pip install git+https://github.com/openai/whisper.git
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all

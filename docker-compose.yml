@@ -17,6 +17,7 @@ services:
     container_name: vr_voice_chat_app
     working_dir: '/root/app'
     tty: true
+    user: "${UID}:${GID}"
     volumes:
       - ./vr_voice_chat:/root/app
       - /etc/letsencrypt:/etc/letsencrypt

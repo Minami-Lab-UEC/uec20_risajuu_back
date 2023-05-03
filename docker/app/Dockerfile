@@ -1,5 +1,15 @@
 FROM nvcr.io/nvidia/pytorch:23.04-py3
+
+ARG USER_ID
+ARG GROUP_ID
+ARG USER_NAME
+ARG GROUP_NAME
 USER root
+
+# RUN groupadd -g ${GROUP_ID} ${GROUP_NAME} \
+#     && useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}
+# USER ${USER_NAME}
+
 
 RUN apt-get update
 RUN apt-get -y install locales && \
@@ -11,15 +21,21 @@ ENV TZ JST-9
 ENV TERM xterm
 
 COPY requirements.txt /root/
-#COPY entrypoint.sh /var/tmp
-#CMD bash -E /var/tmp/entrypoint.sh && /bin/bash
 
 RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
+RUN apt-get install -y portaudio19-dev
+RUN pip install --global-option='build_ext' --global-option='-I/usr/local/Cellar/portaudio/19.7.0/include' --global-option='-L/usr/local/Cellar/portaudio/19.7.0/lib' pyaudio
 RUN pip install -r /root/requirements.txt
 RUN python -m pip install git+https://github.com/openai/whisper.git
 
+# RUN groupadd -g ${GROUP_ID} ${GROUP_NAME} \
+#     && useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}
+# USER ${USER_NAME}
+
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
+ENV PYTHONPATH "${PYTHONPATH}:/home/naoki/vr_voice_chat/vr_voice_chat/"
+ENV PYTHONPATH "${PYTHONPATH}:/root/app/"

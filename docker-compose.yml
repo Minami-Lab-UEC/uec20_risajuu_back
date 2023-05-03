@@ -14,10 +14,15 @@ services:
     build:
       context: ./docker/app
       dockerfile: Dockerfile
+      args:
+        USER_ID: ${UID}
+        USER_NAME: ${USER}
+        GROUP_ID: ${GID}
+        GROUP_NAME: ${GROUP}
     container_name: vr_voice_chat_app
     working_dir: '/root/app'
     tty: true
-    user: "${UID}:${GID}"
+    #user: "${UID}:${GID}"
     volumes:
       - ./vr_voice_chat:/root/app
       - /etc/letsencrypt:/etc/letsencrypt

@@ -1,3 +1,7 @@
 numpy
 openai
 langchain
+transformers
+SpeechRecognition
+gtts
+pyaudio

@@ -3,4 +3,4 @@ from pydantic import BaseModel
 from enum import Enum
 
 class Query(BaseModel):
-  query: str
+  text: str

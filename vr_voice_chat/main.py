@@ -27,7 +27,7 @@ chat = LangChainChat()
 
 @app.post("/api/v1/chat")
 async def create_reply(query: Query):
-    reply = chat.conversation(Query.text)
+    reply = chat.conversation(query.text)
     return {"response": reply["response"]}
 
 def main():

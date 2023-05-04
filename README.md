@@ -23,8 +23,12 @@ docker-compose up -d
 ```bash
 docker-compose exec app bash
 ```
-```
 ### fastAPIサーバーの起動
+### vr_voice_chatフォルダ内に.envファイルを作成
+.envファイルに以下を記述
+```bash
+OPENAI_API_KEY=<openaiのAPIキー>
+```
 dockerコンテナ内で
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000

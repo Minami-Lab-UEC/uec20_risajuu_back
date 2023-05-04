@@ -26,11 +26,11 @@ RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
-RUN apt-get install -y portaudio19-dev
+# RUN apt-get install -y portaudio19-dev
 #RUN pip install --global-option='build_ext' --global-option='-I/usr/local/Cellar/portaudio/19.7.0/include' --global-option='-L/usr/local/Cellar/portaudio/19.7.0/lib' pyaudio
-RUN apt-get update && apt-get install -y alsa-base alsa-utils
+# RUN apt-get update && apt-get install -y alsa-base alsa-utils
 RUN pip install -r /root/requirements.txt
-RUN python -m pip install git+https://github.com/openai/whisper.git
+# RUN python -m pip install git+https://github.com/openai/whisper.git
 
 # RUN groupadd -g ${GROUP_ID} ${GROUP_NAME} \
 #     && useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}

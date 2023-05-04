@@ -27,7 +27,8 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
 RUN apt-get install -y portaudio19-dev
-RUN pip install --global-option='build_ext' --global-option='-I/usr/local/Cellar/portaudio/19.7.0/include' --global-option='-L/usr/local/Cellar/portaudio/19.7.0/lib' pyaudio
+#RUN pip install --global-option='build_ext' --global-option='-I/usr/local/Cellar/portaudio/19.7.0/include' --global-option='-L/usr/local/Cellar/portaudio/19.7.0/lib' pyaudio
+RUN apt-get update && apt-get install -y alsa-base alsa-utils
 RUN pip install -r /root/requirements.txt
 RUN python -m pip install git+https://github.com/openai/whisper.git
 
@@ -37,5 +38,8 @@ RUN python -m pip install git+https://github.com/openai/whisper.git
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
-ENV PYTHONPATH "${PYTHONPATH}:/home/naoki/vr_voice_chat/vr_voice_chat/"
-ENV PYTHONPATH "${PYTHONPATH}:/root/app/"
+# ENV PYTHONPATH "${PYTHONPATH}:/home/naoki/vr_voice_chat/vr_voice_chat/"
+# ENV PYTHONPATH "${PYTHONPATH}:/root/app/"
+
+# fastapi のサーバーを立ち上げる
+#CMD ["uvicorn", "main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"]

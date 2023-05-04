@@ -1,3 +1,4 @@
+python-dotenv
 numpy
 openai
 langchain
@@ -5,3 +6,7 @@ transformers
 SpeechRecognition
 gtts
 pyaudio
+gradio
+google-search-results
+fastapi
+uvicorn[standard]

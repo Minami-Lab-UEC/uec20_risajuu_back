@@ -3,3 +3,4 @@ stash
 vr_voice_chat/audio_data
 vr_voice_chat/test
 vr_voice_chat/__pycache__
+vr_voice_chat/output

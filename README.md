@@ -41,7 +41,7 @@ docker-compose exec app bash
 - APIの確認
     - 以下にアクセスしてAPIの仕様が表示されれば成功
 http://localhost:8080/docs
-## 感情分析APIの使用方法
+## チャットと感情分析APIの使用方法
 - emotion-analysis-modelをダウンロード
 - vr_voice_chatフォルダ内にemotion-analysis-modelフォルダを配置
 - パラメータの意味
@@ -51,3 +51,10 @@ http://localhost:8080/docs
     - EmotionAnalysisクラスのパラメータ
         - use_japanese (bool): 感情のラベル日本語かするかどうか
         - use_gpu (bool) : GPUを使用するかどうか
+    - EmotionAnalysis.analyze_emotion()のパラメータ
+        - show_fig : matplotlibによる表の出力を行うかどうか
+        - ret_prob : 感情の分析の結果を返すかどうか
+- APIの返り値
+    - response : chatbotの返答
+    - emotion : 感情分析の結果
+    - strength : 感情の強さ

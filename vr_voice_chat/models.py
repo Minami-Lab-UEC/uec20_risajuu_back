@@ -4,3 +4,4 @@ from enum import Enum
 
 class Query(BaseModel):
   text: str
+  emotionAnalysis: bool

@@ -52,7 +52,9 @@ class EmotionAnalysis:
             plt.title('入力文 : ' + text, fontsize=15)
 
         if ret_prob:
-            return out_dict
+            max_label, max_value = max(out_dict.items(), key=lambda x: x[1])
+            max_value = np.float64(max_value)
+            return max_label, max_value
         
 def main():
     # 動作確認

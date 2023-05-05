@@ -30,17 +30,15 @@ app.add_middleware(
 chat = LangChainChat()
 # use_gpu = Trueは遅くなるので、False推奨
 emotionAnalysis_model = EmotionAnalysis(use_japanese=False, use_gpu=False, use_plot=False)
-defalt_emotion = {'Joy': 0.0, 'Sadness': 0.0, 'Anticipation': 0.0, 'Surprise': 0.0, 'Anger': 0.0, 'Fear': 0.0, 'Disgust': 0.0, 'Trust': 0.0}
 
 @app.post("/api/v1/chat")
 async def create_reply(query: Query):
     reply = chat.conversation(query.text)
     if query.emotion:
-        emotion = emotionAnalysis_model.analyze_emotion(reply["response"], show_fig=False, ret_prob=True)
+        emotion, strength = emotionAnalysis_model.analyze_emotion(reply["response"], show_fig=False, ret_prob=True)
     else:
-        emotion = defalt_emotion
-    emotion = {k: np.float64(v) for k, v in emotion.items()}
-    return {"response": reply["response"], "emotion": json.dumps(emotion)}
+        emotion, strength = None, None
+    return {"response": reply["response"], "emotion": emotion, "strength": strength}
 
 def main():
     while True:

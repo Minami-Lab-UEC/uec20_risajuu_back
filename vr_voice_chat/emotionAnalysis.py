@@ -10,13 +10,14 @@ import torch
 import time
 
 class EmotionAnalysis:
-    def __init__(self, use_japanese=False, use_gpu=False) -> None:
+    def __init__(self, use_japanese=False, use_gpu=False, use_plot=False) -> None:
         if use_japanese:
             self.emotion_names = ['喜び', '悲しみ', '期待', '驚き', '怒り', '恐れ', '嫌悪', '信頼']  # 日本語版
         else:
             self.emotion_names = ['Joy', 'Sadness', 'Anticipation', 'Surprise', 'Anger', 'Fear', 'Disgust', 'Trust']
         self.num_labels = len(self.emotion_names)
-        sns.set(font='IPAGothic')
+        if use_plot:
+            sns.set(font='IPAGothic')
         tokenizer_checkpoint = 'cl-tohoku/bert-base-japanese-whole-word-masking'
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)
         model_checkpoint = 'emotion-analysis-model'
@@ -26,15 +27,13 @@ class EmotionAnalysis:
         else:
             self.device = torch.device("cpu")
         self.model.to(self.device)
+        self.model.eval()
 
     def np_softmax(self, x):
         f_x = np.exp(x) / np.sum(np.exp(x))
         return f_x
 
     def analyze_emotion(self, text, show_fig=False, ret_prob=False):
-        # 推論モードを有効かつGPU対応にする
-        self.model.eval()
-
         # 入力データ変換 + 推論
         tokens = self.tokenizer(text, truncation=True, return_tensors="pt").to(self.device)
 

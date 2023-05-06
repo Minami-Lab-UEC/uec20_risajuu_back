@@ -5,3 +5,4 @@ from enum import Enum
 class Query(BaseModel):
   text: str
   emotion: bool
+  voicevox : bool

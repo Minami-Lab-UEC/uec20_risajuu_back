@@ -54,6 +54,8 @@ class GenerateWav:
         wf.writeframes(binary)
         wf.close()
 
+        return filepath + filename
+
 def main():
     text = "hello"
     emotion = "happiness"

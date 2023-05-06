@@ -56,9 +56,9 @@ http://localhost:8080/docs
         - show_fig : matplotlibによる表の出力を行うかどうか
         - ret_prob : 感情の分析の結果を返すかどうか
 - APIの返り値
-    - response : chatbotの返答
-    - emotion : 感情分析の結果\
+    - response (str) : chatbotの返答
+    - emotion (str) : 感情分析の結果\
     英語['Joy', 'Sadness', 'Anticipation', 'Surprise', 'Anger', 'Fear', 'Disgust', 'Trust']\
     日本語['喜び', '悲しみ', '期待', '驚き', '怒り', '恐れ', '嫌悪', '信頼']
-    - strength : 感情の強さ\
+    - strength (float64) : 感情の強さ\
     0(弱い)~1(強い)

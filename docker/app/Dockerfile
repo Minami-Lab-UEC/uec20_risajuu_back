@@ -30,7 +30,9 @@ RUN pip install --upgrade setuptools
 #RUN pip install --global-option='build_ext' --global-option='-I/usr/local/Cellar/portaudio/19.7.0/include' --global-option='-L/usr/local/Cellar/portaudio/19.7.0/lib' pyaudio
 # RUN apt-get update && apt-get install -y alsa-base alsa-utils
 RUN pip install -r /root/requirements.txt
+RUN pip install fugashi ipadic
 # RUN python -m pip install git+https://github.com/openai/whisper.git
+RUN apt-get -y install fonts-ipafont-gothic
 
 # RUN groupadd -g ${GROUP_ID} ${GROUP_NAME} \
 #     && useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}

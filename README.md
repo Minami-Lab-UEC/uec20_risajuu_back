@@ -44,11 +44,11 @@ docker-compose exec app bash
     - 以下にアクセスしてAPIの仕様が表示されれば成功
 http://localhost:8080/docs
 ## チャットと感情分析APIの使用方法
-- APIのエンドポイントは"/api/v1/chat"
+- APIのエンドポイントは"/api/v1/chat"のpost通信
 - パラメータの意味
     - APIパラメータ
-        - query.text (str): userの発言
-        - emotionAnalysis (bool) : 感情分析を行うかどうか
+        - text (str): userの発言
+        - emotion (bool) : 感情分析を行うかどうか
     - EmotionAnalysisクラスのパラメータ
         - use_japanese (bool): 感情のラベル日本語かするかどうか
         - use_gpu (bool) : GPUを使用するかどうか

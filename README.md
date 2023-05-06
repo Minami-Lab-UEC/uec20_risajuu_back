@@ -32,6 +32,8 @@ docker-compose exec app bash
         ```bash
         OPENAI_API_KEY=<openaiのAPIキー>
         ```
+    - emotion-analysis-modelをダウンロード
+    - vr_voice_chatフォルダ内にemotion-analysis-modelフォルダを配置
     - dockerコンテナ内で
         ```bash
         uvicorn main:app --reload --host 0.0.0.0 --port 8000
@@ -43,8 +45,6 @@ docker-compose exec app bash
 http://localhost:8080/docs
 ## チャットと感情分析APIの使用方法
 - APIのエンドポイントは"/api/v1/chat"
-- emotion-analysis-modelをダウンロード
-- vr_voice_chatフォルダ内にemotion-analysis-modelフォルダを配置
 - パラメータの意味
     - APIパラメータ
         - query.text (str): userの発言

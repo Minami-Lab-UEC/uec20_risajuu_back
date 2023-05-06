@@ -3,7 +3,7 @@ import requests
 import wave
 from eng_to_kana import eng_to_kana
 
-class Generate_Wav:
+class GenerateWav:
     def __init__(self):
         # host = 'localhost'
         host = 'host.docker.internal'

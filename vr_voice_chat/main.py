@@ -1,6 +1,6 @@
 from chat import LangChainChat
 from emotionAnalysis import EmotionAnalysis
-from voicevox import Generate_Wav
+from voicevox import GenerateWav
 import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,7 +30,7 @@ app.add_middleware(
 chat = LangChainChat()
 # use_gpu = Trueは遅くなるので、False推奨
 emotionAnalysis_model = EmotionAnalysis(use_japanese=False, use_gpu=False, use_plot=False)
-wavBinary_encoder = Generate_Wav()
+wavBinary_encoder = GenerateWav()
 
 @app.post("/api/v1/chat")
 async def create_reply(query: Query):

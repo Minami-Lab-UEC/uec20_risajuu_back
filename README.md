@@ -36,25 +36,36 @@ docker-compose exec app bash
         ```bash
         uvicorn main:app --reload --host 0.0.0.0 --port 8000
         ```
-    - 以下にアクセスしてHello Worldが表示されれば成功
+    - 以下にアクセスしてHello Worldが表示されれば成功\
         http://localhost:8080/
 - APIの確認
-    - 以下にアクセスしてAPIの仕様が表示されれば成功
+    - 以下にアクセスしてAPIの仕様が表示されれば成功\
 http://localhost:8080/docs
-## チャットと感情分析APIの使用方法
+## チャットAPIの使用方法
 - APIのエンドポイントは"/api/v1/chat"
 - emotion-analysis-modelをダウンロード
 - vr_voice_chatフォルダ内にemotion-analysis-modelフォルダを配置
+- VOICEVOXをインストール\
+https://voicevox.hiroshiba.jp/
+- VOICEVOXのデスクトップを起動  
+- 以下にアクセスしてsuwagaが表示されれば成功\
+http://localhost:50021/docs
+
 - パラメータの意味
     - APIパラメータ
         - query.text (str): userの発言
         - emotionAnalysis (bool) : 感情分析を行うかどうか
+        - voicevox (bool) : 音声合成を行うかどうか
     - EmotionAnalysisクラスのパラメータ
         - use_japanese (bool): 感情のラベル日本語かするかどうか
         - use_gpu (bool) : GPUを使用するかどうか
     - EmotionAnalysis.analyze_emotion()のパラメータ
         - show_fig : matplotlibによる表の出力を行うかどうか
         - ret_prob : 感情の分析の結果を返すかどうか
+    - GenerateWav.generate_wav()のパラメータ
+        - text : 音声合成するテキスト
+        - emotion : 感情分析した感情
+        - strength : 感情分析した感情の強さ
 - APIの返り値
     - response (str) : chatbotの返答
     - emotion (str) : 感情分析の結果\
@@ -62,3 +73,4 @@ http://localhost:8080/docs
     日本語['喜び', '悲しみ', '期待', '驚き', '怒り', '恐れ', '嫌悪', '信頼']
     - strength (float64) : 感情の強さ\
     0(弱い)~1(強い)
+    - voicevox (bynary) : 音声合成したwavファイルのバイナリデータ

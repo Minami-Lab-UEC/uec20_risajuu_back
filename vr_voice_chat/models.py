@@ -6,3 +6,4 @@ class Query(BaseModel):
   text: str
   emotion: bool
   voicevox : bool
+  return_wav : bool
